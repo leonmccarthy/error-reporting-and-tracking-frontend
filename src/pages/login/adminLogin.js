@@ -4,10 +4,10 @@ import Axios from 'axios';
 function AdminLogin() {
   const [ username, setUsername ] = useState("");
   const [ password, setPassword ] = useState("");
-  const data = { username: username, password: password };
+  // const data = { username: username, password: password };
 
   const login = ()=>{
-    Axios.get("https://senior-project-trial-app.herokuapp.com/admauth/login", data).then((response)=>{
+    Axios.get("https://senior-project-trial-app.herokuapp.com/admauth/login",{header: {'Access-Control-Allow-Origin':'*'}},  { username: username, password: password }).then((response)=>{
     alert(response.data);
     })
   }
