@@ -7,6 +7,11 @@ import DevLogin from './pages/login/devLogin';
 import UserRegister from './pages/registration/userRegister';
 import UserLogin from './pages/login/userLogin';
 import Dashboard from './pages/components/Dashboard';
+import ReportError from './pages/errors/reportError';
+import AssignError from './pages/errors/assignError';
+import AssignedErrors from './pages/components/assignedErrors';
+import TotalSteps from './pages/developer/totalSteps';
+import CompletedSteps from './pages/developer/completedSteps';
 import { BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -21,6 +26,11 @@ function App() {
             <Link to={"/d_login"}>Dev Login</Link>
             <Link to={"/u_reg"}>User Register</Link>
             <Link to={"/u_login"}>User Login</Link>
+            <Link to={"/report"}>Report Error</Link>
+            <Link to={"/assign"}>Assign Error</Link>
+            <Link to={"/assigned"}>Assigned Errors</Link>
+            <Link to={"/totalsteps"}>Completion steps</Link>
+            <Link to={"/completedsteps"}>Completed steps</Link>
             <Routes>
               <Route path='/a_login' element={<AdminLogin />} />
               <Route path='/dashboard' element={<Dashboard />} />
@@ -30,6 +40,11 @@ function App() {
               <Route path='/d_login' element={<DevLogin />} />
               <Route path='/u_reg' element={<UserRegister />} />
               <Route path='/u_login' element={<UserLogin />} />
+              <Route path='/report' element={<ReportError />} />
+              <Route path='/assign' element={<AssignError />} />
+              <Route path='/assigned' element={<AssignedErrors />} />
+              <Route path='/totalsteps' element={<TotalSteps />} />
+              <Route path='/completedsteps' element={<CompletedSteps />} />
             </Routes>
           </Router>
     </div>
