@@ -43,8 +43,8 @@ function App() {
               <Route path='/report' element={<ReportError />} />
               <Route path='/assign/:id' element={<AssignError />} />
               <Route path='/assigned' element={<AssignedErrors />} />
-              <Route path='/totalsteps' element={<TotalSteps />} />
-              <Route path='/completedsteps' element={<CompletedSteps />} />
+              <Route path='/totalsteps/:id' element={<TotalSteps />} />
+              <Route path='/completedsteps/:id' element={<CompletedSteps />} />
             </Routes>
           </Router>
     </div>

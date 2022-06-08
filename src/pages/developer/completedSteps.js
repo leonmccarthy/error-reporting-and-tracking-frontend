@@ -1,19 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Axios from "axios";
 import * as Yup from "yup"
 import { Formik, Form, ErrorMessage, Field } from "formik";
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 function CompletedSteps() {
+    let { id } = useParams();
     let navigate = useNavigate();
+    const [ errorById, setErrorById ] = useState([]);
 
-    const initialValues = {
-        errorDescription: "",
-        stepsDone: 0
-    };
+    useEffect(()=>{
+        Axios.get(`http://localhost:3002/assigned/display/byId/${id}`).then((response)=>{
+            setErrorById(response.data)
+        })
+    }, [])
+    // const initialValues = {
+    //     errorDescription: "",
+    //     stepsDone: 0
+    // };
 
     const validationSchema = Yup.object().shape({
-        errorDescription: Yup.string().min(4).max(200).required(),
+        errorName: Yup.string().min(2).max(100).required(),
+        errorDescription: Yup.string().min(2).max(200).required(),
+        errorSteps: Yup.string().min(2).max(200).required(),
+        priority: Yup.string().required("Please select a priority level"),
+        username: Yup.string().min(2).max(200).required(),
+        developerAssigned: Yup.string().required("Please select a developer"),
         stepsDone: Yup.number().required()
     });
 
@@ -31,17 +43,45 @@ function CompletedSteps() {
     <div className='completedStepsContainer'>
         <div className='form'>
             <h1>Update steps completed</h1>
-            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-                <Form>
-                    <label>Error description: </label>
-                    <ErrorMessage name='errorDescription' component="span" className='error'/>
-                    <Field name='errorDescription' type="text" className="inputAssign" placeholder="Error description"/>
-                    <label>Steps done to attain completion: </label>
-                    <ErrorMessage name='stepsDone' component="span" className='error'/>
-                    <Field name='stepsDone' type="text" className="inputAssign" placeholder="Enter number of steps"/>
-                    <button type="submit">Submit number of steps completed</button>
-                </Form>
-            </Formik>
+            {errorById.map((value, key)=>{
+                return(
+                    <Formik initialValues={
+                        {   errorName: value.errorName,
+                            errorDescription: value.errorDescription,
+                            errorSteps: value.errorSteps,
+                            priority: value.priority,
+                            username: value.createdBy,
+                            developerAssigned: value.developerassigned,
+                            stepsDone: 0
+                        }
+                    } validationSchema={validationSchema} onSubmit={onSubmit}>
+                        <Form>
+                            <label>Error Name:</label>
+                            <ErrorMessage name='errorName' component="span" className='error'/>
+                            <Field name='errorName' className="inputReport" type="text" key={key} placeholder="Enter an error title" value={value.errorName}/>
+                            <label>Error Description:</label>
+                            <ErrorMessage name='errorDescription' component="span" className='error'/>
+                            <Field name='errorDescription' className="inputReport" type="text" key={key} placeholder="Describe the error"  value={value.errorDescription}/>
+                            <label>Error Steps:</label>
+                            <ErrorMessage name='errorSteps' component="span" className='error'/>
+                            <Field name='errorSteps' className="inputReport" type="text" key={key} placeholder="Write the steps you took to reach to the error"  value={value.errorSteps}/>
+                            <label>Priority:</label>
+                            <ErrorMessage name='priority' component="span" className='error'/>
+                            <Field name='priority' className="inputReport" type="text" key={key} value={value.priority}/>
+                            <label>Creator:</label>
+                            <ErrorMessage name='username' component="span" className='error'/>
+                            <Field name='username' className="inputReport" type="email" key={key} placeholder="Creator"  value={value.createdBy}/>
+                            <label>Assigned Developer:</label>
+                            <ErrorMessage name='developerAssigned' component="span" className='error'/>
+                            <Field name='developerAssigned' className="inputReport" type="text" key={key} value={value.developerassigned}/>  
+                            <label>Steps done to attain completion: </label>
+                            <ErrorMessage name='stepsDone' component="span" className='error'/>
+                            <Field name='stepsDone' type="text" className="inputAssign" placeholder="Enter number of steps"/>
+                            <button type="submit">Submit number of steps completed</button>
+                        </Form>
+                    </Formik>
+                )
+            })}
         </div>
     </div>
   )
