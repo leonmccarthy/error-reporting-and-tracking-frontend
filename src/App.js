@@ -41,7 +41,7 @@ function App() {
               <Route path='/u_reg' element={<UserRegister />} />
               <Route path='/u_login' element={<UserLogin />} />
               <Route path='/report' element={<ReportError />} />
-              <Route path='/assign' element={<AssignError />} />
+              <Route path='/assign/:id' element={<AssignError />} />
               <Route path='/assigned' element={<AssignedErrors />} />
               <Route path='/totalsteps' element={<TotalSteps />} />
               <Route path='/completedsteps' element={<CompletedSteps />} />
