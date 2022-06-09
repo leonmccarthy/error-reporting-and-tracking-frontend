@@ -23,7 +23,8 @@ function ReportError() {
 
     //reporting the error
     const onSubmit = (data)=>{
-        Axios.post("http://localhost:3002/error/", data).then((response)=>{
+        Axios.post("http://localhost:3002/error/", { headers: {  accessToken: localStorage.getItem("accessToken")
+        }}, data).then((response)=>{
             if(response.data.error){
                 alert(response.data.error);
             }else{
@@ -48,7 +49,7 @@ function ReportError() {
                     <label>Error Steps:</label>
                     <ErrorMessage name='errorSteps' component="span" className='error'/>
                     <Field name='errorSteps' className="inputReport" type="text" placeholder="Write the steps you took to reach to the error"/>
-                    <label>Error Name:</label>
+                    <label>Creator</label>
                     <ErrorMessage name='username' component="span" className='error'/>
                     <Field name='username' className="inputReport" type="email" placeholder="username"/>
                     <button type="submit">Submit Error</button>

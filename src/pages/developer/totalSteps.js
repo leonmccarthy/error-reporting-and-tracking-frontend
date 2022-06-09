@@ -15,11 +15,6 @@ function TotalSteps() {
         })
     }, [])
 
-    const initialValues = {
-        errorDescription: "",
-        stepsToComplete: 0
-    };
-
     const validationSchema = Yup.object().shape({
         errorName: Yup.string().min(2).max(100).required(),
         errorDescription: Yup.string().min(2).max(200).required(),
@@ -31,9 +26,11 @@ function TotalSteps() {
     });
 
     const onSubmit = (data) =>{
-        Axios.put("http://localhost:3002/assigned/steps", data).then((response)=>{
+        Axios.put("http://localhost:3002/assigned/steps", {headers:{
+            accessToken: localStorage.getItem("accessToken")
+        }}, data).then((response)=>{
             if(response.data.error){
-                alert(response.data.errror);
+                alert(response.data.error);
             }else{
                 alert(response.data);
                 navigate("/assigned")

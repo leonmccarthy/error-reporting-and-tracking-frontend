@@ -8,7 +8,9 @@ function AdminChangePassword() {
   const data = { username: username, oldPassword: oldPassword, newPassword: newPassword};
 
   const changePassword = ()=>{
-    Axios.put("http://localhost:3002/admauth/changepassword", data ).then((response)=>{
+    Axios.put("http://localhost:3002/admauth/changepassword", data , { headers:{
+      accessToken: localStorage.getItem("acessToken")
+      }}).then((response)=>{
     alert(response.data);
     })
   }

@@ -22,7 +22,8 @@ function DevLogin() {
       if(response.data.error){
         alert(response.data.error)
       }else{
-        alert(response.data)
+        localStorage.setItem("accessToken", response.data.accessToken)
+        alert(response.data.message)
         navigate("/")
       }
       })

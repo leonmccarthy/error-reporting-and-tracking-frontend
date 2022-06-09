@@ -30,11 +30,13 @@ function CompletedSteps() {
     });
 
     const onSubmit = (data) =>{
-        Axios.put("http://localhost:3002/assigned/stepsdone", data).then((response)=>{
+        Axios.put("http://localhost:3002/assigned/stepsdone", {headers:{
+            accessToken: localStorage.getItem("accessToken")
+        }}, data).then((response)=>{
             if(response.data.error){
-                alert(response.data.errror);
+                alert(response.data.error);
             }else{
-                alert(response.data);
+                alert(response.data.message);
                 navigate("/assigned")
             }
         })

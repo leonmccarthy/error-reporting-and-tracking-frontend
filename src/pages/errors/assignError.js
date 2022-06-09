@@ -33,7 +33,9 @@ function AssignError() {
 
     //reporting the error
     const onSubmit = (data)=>{
-        Axios.post("http://localhost:3002/assigned/", data).then((response)=>{
+        Axios.post("http://localhost:3002/assigned/", { headers:{
+            accessToken: localStorage.getItem("accessToken")
+        }}, data).then((response)=>{
             if(response.data.error){
                 alert(response.data.error);
             }else{
