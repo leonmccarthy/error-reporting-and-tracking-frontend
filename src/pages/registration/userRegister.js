@@ -3,6 +3,7 @@ import { Formik, ErrorMessage, Form, Field} from "formik"
 import * as Yup from "yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../../styles/register.css"
 
 function UserRegister() {
   let navigate = useNavigate();
@@ -33,7 +34,8 @@ function UserRegister() {
   }
   return (
     <div className='RegisterContainer'>
-    <h1>User Registration</h1>
+      <div>
+      <h1>User Registration</h1>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={userRegister}>
           <Form className='registerform'>
             <label>First name:</label>
@@ -51,6 +53,8 @@ function UserRegister() {
             <button type="submit">Register</button>
           </Form>
       </Formik>
+      </div>
+    
   </div>
   )
 }

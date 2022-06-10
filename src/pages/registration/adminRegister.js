@@ -3,6 +3,7 @@ import { Formik, ErrorMessage, Form, Field} from "formik"
 import * as Yup from "yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../../styles/register.css"
 
 function AdminRegister() {
   let navigate = useNavigate();

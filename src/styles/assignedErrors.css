@@ -1,3 +1,12 @@
+.assignedErrorContainer {
+    grid-column: 2;
+    display: grid;
+    width: 100%;
+    height: 100vh;
+    place-items: center;
+    /* padding: 10px;
+    margin: 10px; */
+}
 .assignedErrorContainer .errorHolder {
     border: 1px solid gray;
     border-radius: 5px;

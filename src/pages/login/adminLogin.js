@@ -3,6 +3,7 @@ import { Formik, ErrorMessage, Form, Field} from "formik"
 import * as Yup from "yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../../styles/login.css"
 
 function AdminLogin() {
   // const [ username, setUsername ] = useState("");
@@ -41,7 +42,8 @@ function AdminLogin() {
 
   return (
     <div className='LoginContainer'>
-    <h1>Admin Login</h1>
+      <div>
+      <h1>Admin Login</h1>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={loginAdmin}>
           <Form className='loginform'>
             <label>Username:</label>
@@ -53,6 +55,7 @@ function AdminLogin() {
             <button type="submit">Login</button>
           </Form>
       </Formik>
+      </div>
   </div>
     // <div className="adminLogin">
     //   <h1>Admin Login</h1>

@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import Axios from "axios";
+import "../../styles/reportError.css"
 
 function ReportError() {
     let navigate = useNavigate();

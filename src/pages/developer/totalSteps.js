@@ -3,6 +3,7 @@ import Axios from "axios";
 import * as Yup from "yup"
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useNavigate, useParams } from "react-router-dom"
+import "../../styles/totalSteps.css";
 
 function TotalSteps() {
     let { id } = useParams();

@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import Axios from "axios";
+import "../../styles/assignError.css";
 
 function AssignError() {
     let {id} = useParams();

@@ -12,13 +12,16 @@ import AssignError from './pages/errors/assignError';
 import AssignedErrors from './pages/components/assignedErrors';
 import TotalSteps from './pages/developer/totalSteps';
 import CompletedSteps from './pages/developer/completedSteps';
+import Sidebar from './pages/components/sideBar';
 import { BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
+      
           <Router>
-            <Link to={"/a_login"}>Admin Login</Link>
+            <Sidebar />
+            {/* <Link to={"/a_login"}>Admin Login</Link>
             <Link to={"/a_reg"}>Admin Register</Link>
             <Link to={"/a_changepassword"}>Admin Change Password</Link>
             <Link to={"/dashboard"}>Dashboard</Link>
@@ -30,7 +33,8 @@ function App() {
             <Link to={"/assign"}>Assign Error</Link>
             <Link to={"/assigned"}>Assigned Errors</Link>
             <Link to={"/totalsteps"}>Completion steps</Link>
-            <Link to={"/completedsteps"}>Completed steps</Link>
+            <Link to={"/completedsteps"}>Completed steps</Link> */}
+            
             <Routes>
               <Route path='/a_login' element={<AdminLogin />} />
               <Route path='/dashboard' element={<Dashboard />} />
