@@ -4,6 +4,8 @@ import * as Yup from "yup"
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useNavigate, useParams } from "react-router-dom"
 import "../../styles/totalSteps.css";
+import {Button} from "react-bootstrap"
+import "../../bootstrap/css/bootstrap.min.css"
 
 function TotalSteps() {
     let { id } = useParams();
@@ -27,9 +29,9 @@ function TotalSteps() {
     });
 
     const onSubmit = (data) =>{
-        Axios.put("http://localhost:3002/assigned/steps", {headers:{
+        Axios.put("http://localhost:3002/assigned/steps", data , { headers:{
             accessToken: localStorage.getItem("accessToken")
-        }}, data).then((response)=>{
+            }}).then((response)=>{
             if(response.data.error){
                 alert(response.data.error);
             }else{
@@ -51,7 +53,7 @@ function TotalSteps() {
                             priority: value.priority,
                             username: value.createdBy,
                             developerAssigned: value.developerassigned,
-                            stepsToComplete: 0
+                            stepsToComplete: value.stepsToComplete
                         }
                         } validationSchema={validationSchema} onSubmit={onSubmit}>
                             <Form>
@@ -76,7 +78,7 @@ function TotalSteps() {
                                 <label>Steps required for completion: </label>
                                 <ErrorMessage name='stepsToComplete' component="span" className='error'/>
                                 <Field name='stepsToComplete' type="text" className="inputAssign" placeholder="Enter number of steps"/>
-                                <button type="submit">Submit number of steps</button>
+                                <Button type="submit" variant="primary">Submit number of steps</Button>
                             </Form>
                     </Formik>
             )

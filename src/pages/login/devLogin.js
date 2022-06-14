@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/login.css"
+import {Button} from "react-bootstrap"
+import "../../bootstrap/css/bootstrap.min.css"
 
 function DevLogin() {
   let navigate = useNavigate();
@@ -42,7 +44,7 @@ function DevLogin() {
             <label>Password:</label>
             <ErrorMessage name="password" component="span" className="error" />
             <Field name="password" type="password" id="inputLogin" placeholder="Enter your password" />
-            <button type="submit">Login</button>
+            <Button type="submit" variant="primary">Login</Button>
           </Form>
       </Formik>
       </div>

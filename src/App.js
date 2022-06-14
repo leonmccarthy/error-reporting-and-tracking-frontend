@@ -1,6 +1,10 @@
 import './styles/App.css';
+import React, { useEffect, useState } from 'react';
+import Axios from "axios"
 import AdminLogin from "./pages/login/adminLogin";
 import AdminChangePassword from './pages/changepassword/adminChangePassword';
+import UserChangePassword from  './pages/changepassword/userChangePassword';
+import DeveloperChangePassword from  './pages/changepassword/developerChangePassword'
 import AdminRegister from './pages/registration/adminRegister';
 import DevRegister from './pages/registration/devRegister';
 import DevLogin from './pages/login/devLogin';
@@ -13,14 +17,68 @@ import AssignedErrors from './pages/components/assignedErrors';
 import TotalSteps from './pages/developer/totalSteps';
 import CompletedSteps from './pages/developer/completedSteps';
 import Sidebar from './pages/components/sideBar';
-import { BrowserRouter as Router, Link, Route, Routes} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Routes, useNavigate} from 'react-router-dom';
+import { AuthContext } from "./helpers/AuthContext"
+import NavBar from './pages/components/NavBar';
 
 function App() {
+  const [ authState, setAuthState ] = useState({username: "", id:0, role: "", status: true})
+
+  useEffect(()=>{
+    //API call for validation
+    Axios.get("http://localhost:3002/auth/auth", {headers: {
+      accessToken: localStorage.getItem("accessToken")
+    }}).then((response)=>{
+      if(response.data.error){
+        setAuthState({...authState, status: false});
+      }else{
+        setAuthState({
+          username: response.data.username,
+          id: response.data.id,
+          role: response.data.role,
+          status: true
+        })
+      }
+    },[]);
+    //API call for validation
+    Axios.get("http://localhost:3002/devauth/auth", {headers: {
+      accessToken: localStorage.getItem("accessToken")
+    }}).then((response)=>{
+      if(response.data.error){
+        setAuthState({...authState, status: false});
+      }else{
+      setAuthState({
+        username: response.data.username,
+        id: response.data.id,
+        role: response.data.role,
+        status: true
+      })
+      }
+    },[]);
+    //API call for validation
+    Axios.get("http://localhost:3002/admauth/auth", {headers: {
+      accessToken: localStorage.getItem("accessToken")
+    }}).then((response)=>{
+      if(response.data.error){
+        setAuthState({...authState, status: false});
+      }else{
+        // alert(localStorage.getItem("accessToken"))
+      setAuthState({
+        username: response.data.username,
+        id: response.data.id,
+        role: response.data.role,
+        status: true
+      })
+      }
+    },[]);
+  })
   return (
     <div className="App">
-      
-          <Router>
-            <Sidebar />
+      <AuthContext.Provider value={{authState, setAuthState}}>
+      <Router>
+            <NavBar />
+            {authState.status === true &&<Sidebar />}
+            
             {/* <Link to={"/a_login"}>Admin Login</Link>
             <Link to={"/a_reg"}>Admin Register</Link>
             <Link to={"/a_changepassword"}>Admin Change Password</Link>
@@ -39,6 +97,8 @@ function App() {
               <Route path='/a_login' element={<AdminLogin />} />
               <Route path='/dashboard' element={<Dashboard />} />
               <Route path='/a_changepassword' element={<AdminChangePassword />} />
+              <Route path='/u_changepassword' element={<UserChangePassword />} />
+              <Route path='/d_changepassword' element={<DeveloperChangePassword />} />
               <Route path='/a_reg' element={<AdminRegister />} />
               <Route path='/d_reg' element={<DevRegister />} />
               <Route path='/d_login' element={<DevLogin />} />
@@ -51,6 +111,7 @@ function App() {
               <Route path='/completedsteps/:id' element={<CompletedSteps />} />
             </Routes>
           </Router>
+      </AuthContext.Provider>
     </div>
   );
 }

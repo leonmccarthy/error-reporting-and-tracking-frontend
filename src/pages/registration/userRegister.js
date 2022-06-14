@@ -4,6 +4,8 @@ import * as Yup from "yup";
 import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../../styles/register.css"
+import {Button} from "react-bootstrap"
+import "../../bootstrap/css/bootstrap.min.css"
 
 function UserRegister() {
   let navigate = useNavigate();
@@ -50,7 +52,7 @@ function UserRegister() {
             <label>Password:</label>
             <ErrorMessage name="password" component="span" className="error" />
             <Field name="password" type="password" id="inputRegister" placeholder="Enter your password" />
-            <button type="submit">Register</button>
+            <Button type="submit" variant="primary">Register</Button>
           </Form>
       </Formik>
       </div>

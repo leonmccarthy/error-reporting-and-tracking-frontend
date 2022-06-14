@@ -102,10 +102,9 @@ input, select {
 }
 
 .App {
-  text-align: center;
   grid-template-columns: 20% 80%;
   display: grid;
-  text-align: center;
+  /* text-align: center; */
   text-decoration: none;
   list-style: none;
 }

@@ -8,7 +8,7 @@ import {Button} from "react-bootstrap"
 import "../../bootstrap/css/bootstrap.min.css"
 
 
-function AdminChangePassword() {
+function DeveloperChangePassword() {
   const {authState} = useContext(AuthContext)
 
   const initialValues = {
@@ -23,17 +23,17 @@ function AdminChangePassword() {
   })
 
   const changePassword = (data)=>{
-    Axios.put("http://localhost:3002/admauth/changepassword", data , { headers:{
+    Axios.put("http://localhost:3002/devauth/changepassword", data , { headers:{
             accessToken: localStorage.getItem("accessToken")
             }}).then((response)=>{
-    alert(JSON.stringify(response.data));
+                alert(JSON.stringify(response.data));
     })
   }
 
   return (
-    <div className="adminChangePassword">
-      <h1>Admin Change Password</h1>
-      <div className="adminChangePasswordContainer">
+    <div className="developerChangePassword">
+      <h1>Developer Change Password</h1>
+      <div className="developerChangePasswordContainer">
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={changePassword}>
             <Form>
               <label>Username:</label>
@@ -53,4 +53,4 @@ function AdminChangePassword() {
   )
 }
 
-export default AdminChangePassword;
+export default DeveloperChangePassword;

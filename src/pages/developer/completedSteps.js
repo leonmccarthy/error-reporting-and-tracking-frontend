@@ -4,6 +4,8 @@ import * as Yup from "yup"
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useNavigate, useParams } from "react-router-dom"
 import "../../styles/completedSteps.css"
+import {Button} from "react-bootstrap"
+import "../../bootstrap/css/bootstrap.min.css"
 
 function CompletedSteps() {
     let { id } = useParams();
@@ -31,9 +33,9 @@ function CompletedSteps() {
     });
 
     const onSubmit = (data) =>{
-        Axios.put("http://localhost:3002/assigned/stepsdone", {headers:{
+        Axios.put("http://localhost:3002/assigned/stepsdone", data , { headers:{
             accessToken: localStorage.getItem("accessToken")
-        }}, data).then((response)=>{
+            }}).then((response)=>{
             if(response.data.error){
                 alert(response.data.error);
             }else{
@@ -55,7 +57,7 @@ function CompletedSteps() {
                             priority: value.priority,
                             username: value.createdBy,
                             developerAssigned: value.developerassigned,
-                            stepsDone: 0
+                            stepsDone: value.stepsDone
                         }
                     } validationSchema={validationSchema} onSubmit={onSubmit}>
                         <Form>
@@ -80,7 +82,7 @@ function CompletedSteps() {
                             <label>Steps done to attain completion: </label>
                             <ErrorMessage name='stepsDone' component="span" className='error'/>
                             <Field name='stepsDone' type="text" className="inputAssign" placeholder="Enter number of steps"/>
-                            <button type="submit">Submit number of steps completed</button>
+                            <Button type="submit" variant="primary">Submit number of steps completed</Button>
                         </Form>
                     </Formik>
                 )

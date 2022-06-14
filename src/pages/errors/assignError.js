@@ -4,6 +4,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import Axios from "axios";
 import "../../styles/assignError.css";
+import {Button} from "react-bootstrap"
+import "../../bootstrap/css/bootstrap.min.css"
 
 function AssignError() {
     let {id} = useParams();
@@ -34,9 +36,9 @@ function AssignError() {
 
     //reporting the error
     const onSubmit = (data)=>{
-        Axios.post("http://localhost:3002/assigned/", { headers:{
+        Axios.post("http://localhost:3002/assigned/", data , { headers:{
             accessToken: localStorage.getItem("accessToken")
-        }}, data).then((response)=>{
+            }}).then((response)=>{
             if(response.data.error){
                 alert(response.data.error);
             }else{
@@ -64,7 +66,7 @@ function AssignError() {
                 <Form>
                     <label>Error Name:</label>
                     <ErrorMessage name='errorName' component="span" className='error'/>
-                    <Field name='errorName' className="inputReport" type="text" key={key} placeholder="Enter an error title" value={value.errorName}/>
+                    <Field name='errorName' className="inputReport" type="text" key={key}value={value.errorName}/>
                     <label>Error Description:</label>
                     <ErrorMessage name='errorDescription' component="span" className='error'/>
                     <Field name='errorDescription' className="inputReport" type="text" key={key} placeholder="Describe the error"  value={value.errorDescription}/>
@@ -92,7 +94,7 @@ function AssignError() {
                         )
                      })}
                     </Field>
-                    <button type="submit">Assign Error</button>
+                    <Button type="submit" variant="primary">Assign Error</Button>
                 </Form>
             </Formik>
              ) 
