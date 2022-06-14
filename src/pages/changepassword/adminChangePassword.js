@@ -6,10 +6,12 @@ import {AuthContext} from "../../helpers/AuthContext";
 import "../../styles/changePassword.css"
 import {Button} from "react-bootstrap"
 import "../../bootstrap/css/bootstrap.min.css"
+import { useNavigate } from 'react-router-dom';
 
 
 function AdminChangePassword() {
   const {authState} = useContext(AuthContext)
+  let navigate = useNavigate();
 
   const initialValues = {
     username: authState.username,
@@ -26,7 +28,8 @@ function AdminChangePassword() {
     Axios.put("http://localhost:3002/admauth/changepassword", data , { headers:{
             accessToken: localStorage.getItem("accessToken")
             }}).then((response)=>{
-    alert(JSON.stringify(response.data));
+              alert(response.data);
+              navigate("/dashboard")
     })
   }
 
@@ -38,7 +41,7 @@ function AdminChangePassword() {
             <Form>
               <label>Username:</label>
               <ErrorMessage name="username" className='error' component="span"/>
-              <Field type="email" name="username" className='username' value={authState.username}/>
+              <Field type="email" name="username" className='username' value={authState.username} disabled/>
               <label>Old Password: </label>
               <ErrorMessage name="oldPassword" className='error' component="span"/>
               <Field type="password" name="oldPassword" className='oldPassword'/>

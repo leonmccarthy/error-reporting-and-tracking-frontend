@@ -34,7 +34,7 @@ function UserLogin() {
   return (
     <div className='LoginContainer'>
       <div>
-      <h1>Developer Login</h1>
+      <h1>User Login</h1>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={loginUser}>
           <Form className='loginform'>
             <label>Username:</label>

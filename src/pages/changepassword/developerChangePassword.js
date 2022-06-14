@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Axios from 'axios';
 import * as Yup from "yup"
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -10,6 +11,7 @@ import "../../bootstrap/css/bootstrap.min.css"
 
 function DeveloperChangePassword() {
   const {authState} = useContext(AuthContext)
+  let navigate = useNavigate();
 
   const initialValues = {
     username: authState.username,
@@ -26,7 +28,8 @@ function DeveloperChangePassword() {
     Axios.put("http://localhost:3002/devauth/changepassword", data , { headers:{
             accessToken: localStorage.getItem("accessToken")
             }}).then((response)=>{
-                alert(JSON.stringify(response.data));
+              alert(response.data);
+              navigate("/dashboard")
     })
   }
 

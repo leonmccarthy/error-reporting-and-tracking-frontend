@@ -15,6 +15,7 @@ function SideBar() {
         role: "",
         status: false
     })
+    navigate("/")
   }
 
   return (
