@@ -3,7 +3,7 @@ import Axios from "axios";
 import * as Yup from "yup"
 import { Formik, Form, ErrorMessage, Field } from "formik";
 import { useNavigate, useParams } from "react-router-dom"
-import "../../styles/totalSteps.css";
+import "../../styles/completedSteps.css";
 import {Button} from "react-bootstrap"
 import "../../bootstrap/css/bootstrap.min.css"
 
@@ -41,9 +41,11 @@ function TotalSteps() {
         })
     }
   return (
-    <div className='totalStepsContainer'>
-        <div className='form'>
-            <h1>Update total steps to be completed</h1>
+    <div className='totalSteps'>
+        <div className='totalStepsContainer'>
+            <div className="header">
+                <h1>Update total steps to be completed</h1>
+            </div>
             {errorById.map((value, key)=>{
                 return(
                     <Formik initialValues={
@@ -59,25 +61,25 @@ function TotalSteps() {
                             <Form>
                                 <label>Error Name:</label>
                                 <ErrorMessage name='errorName' component="span" className='error'/>
-                                <Field name='errorName' className="inputReport" type="text" key={key} placeholder="Enter an error title" value={value.errorName}/>
+                                <Field name='errorName' className="inputReport" type="text" key={key} value={value.errorName} disabled/>
                                 <label>Error Description:</label>
                                 <ErrorMessage name='errorDescription' component="span" className='error'/>
-                                <Field name='errorDescription' className="inputReport" type="text" key={key} placeholder="Describe the error"  value={value.errorDescription}/>
+                                <Field name='errorDescription' className="inputReport" type="text" key={key} value={value.errorDescription} disabled/>
                                 <label>Error Steps:</label>
                                 <ErrorMessage name='errorSteps' component="span" className='error'/>
-                                <Field name='errorSteps' className="inputReport" type="text" key={key} placeholder="Write the steps you took to reach to the error"  value={value.errorSteps}/>
+                                <Field name='errorSteps' className="inputReport" type="text" key={key} value={value.errorSteps} disabled/>
                                 <label>Priority:</label>
                                 <ErrorMessage name='priority' component="span" className='error'/>
-                                <Field name='priority' className="inputReport" type="text" key={key} value={value.priority}/>
+                                <Field name='priority' className="inputReport" type="text" key={key} value={value.priority} disabled/>
                                 <label>Creator:</label>
                                 <ErrorMessage name='username' component="span" className='error'/>
-                                <Field name='username' className="inputReport" type="email" key={key} placeholder="Creator"  value={value.createdBy}/>
+                                <Field name='username' className="inputReport" type="email" key={key} value={value.createdBy} disabled/>
                                 <label>Assigned Developer:</label>
                                 <ErrorMessage name='developerAssigned' component="span" className='error'/>
-                                <Field name='developerAssigned' className="inputReport" type="text" key={key} value={value.developerassigned}/>  
+                                <Field name='developerAssigned' className="inputReport" type="text" key={key} value={value.developerassigned} disabled/>  
                                 <label>Steps required for completion: </label>
                                 <ErrorMessage name='stepsToComplete' component="span" className='error'/>
-                                <Field name='stepsToComplete' type="text" className="inputAssign" placeholder="Enter number of steps"/>
+                                <Field name='stepsToComplete' type="text" className="inputReport" placeholder="Enter number of steps"/>
                                 <Button type="submit" variant="primary">Submit number of steps</Button>
                             </Form>
                     </Formik>

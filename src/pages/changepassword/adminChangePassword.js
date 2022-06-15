@@ -34,23 +34,25 @@ function AdminChangePassword() {
   }
 
   return (
-    <div className="adminChangePassword">
-      <h1>Admin Change Password</h1>
-      <div className="adminChangePasswordContainer">
-        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={changePassword}>
-            <Form>
-              <label>Username:</label>
-              <ErrorMessage name="username" className='error' component="span"/>
-              <Field type="email" name="username" className='username' value={authState.username} disabled/>
-              <label>Old Password: </label>
-              <ErrorMessage name="oldPassword" className='error' component="span"/>
-              <Field type="password" name="oldPassword" className='oldPassword'/>
-              <label>New Password: </label>
-              <ErrorMessage name="newPassword" className='error' component="span"/>
-              <Field type="password" name="newPassword" className='newPassword'/>
-              <Button type="submit" variant="primary">Change password</Button>
-            </Form>
-        </Formik>
+    <div className="ChangePassword">
+      <div className="ChangePasswordContainer">
+        <div className="header">
+          <h1>Change Password</h1>
+        </div>
+      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={changePassword}>
+              <Form>
+                <label>Username:</label>
+                <ErrorMessage name="username" className='error' component="span"/>
+                <Field type="email" name="username" className='textfield' value={authState.username} disabled/>
+                <label>Old Password: </label>
+                <ErrorMessage name="oldPassword" className='error' component="span"/>
+                <Field type="password" name="oldPassword" className='textfield'/>
+                <label>New Password: </label>
+                <ErrorMessage name="newPassword" className='error' component="span"/>
+                <Field type="password" name="newPassword" className='textfield'/>
+                <Button type="submit" variant="primary">Change password</Button>
+              </Form>
+          </Formik>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-.completedStepsContainer {
+.completedSteps, .totalSteps {
     grid-column: 2;
     display: grid;
     width: 100%;
@@ -6,4 +6,32 @@
     place-items: center;
     /* padding: 10px;
     margin: 10px; */
+}
+
+.completedSteps .completedStepsContainer, .totalSteps .totalStepsContainer {
+    width: 60%;
+    padding: 20px;
+    margin-top: 0;
+    border: 1px solid gray;
+}
+
+.completedSteps label, Button, .inputReport, .totalSteps label, Button, .inputReport{
+    width: 100%;
+    margin: 6px 0;
+}
+
+
+.completedSteps Button, .totalSteps Button{
+    margin-top: 10px;
+}
+
+.completedSteps .error, .totalSteps .error{
+    width: 100%;
+    margin: 2px 0;
+    color: tomato;
+}
+.completedSteps .header, .totalSteps .header{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }

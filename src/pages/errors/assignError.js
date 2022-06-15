@@ -52,7 +52,9 @@ function AssignError() {
   return (
     <div className='assignErrorContainer'>
         <div className='assignForm'>
-            <h1>Assign Error</h1>
+            <div className="header">
+                <h1>Assign Error</h1>
+            </div>
             {errorFields.map((value, key)=>{
                 return(
                 
@@ -66,13 +68,13 @@ function AssignError() {
                 <Form>
                     <label>Error Name:</label>
                     <ErrorMessage name='errorName' component="span" className='error'/>
-                    <Field name='errorName' className="inputReport" type="text" key={key}value={value.errorName}/>
+                    <Field name='errorName' className="inputReport" type="text" key={key}value={value.errorName} disabled/>
                     <label>Error Description:</label>
                     <ErrorMessage name='errorDescription' component="span" className='error'/>
-                    <Field name='errorDescription' className="inputReport" type="text" key={key} placeholder="Describe the error"  value={value.errorDescription}/>
+                    <Field name='errorDescription' className="inputReport" type="text" key={key} value={value.errorDescription} disabled/>
                     <label>Error Steps:</label>
                     <ErrorMessage name='errorSteps' component="span" className='error'/>
-                    <Field name='errorSteps' className="inputReport" type="text" key={key} placeholder="Write the steps you took to reach to the error"  value={value.errorSteps}/>
+                    <Field name='errorSteps' className="inputReport" type="text" key={key} value={value.errorSteps} disabled/>
                     <label>Priority:</label>
                     <ErrorMessage name='priority' component="span" className='error'/>
                     <Field name='priority' className="inputReport" as="select" key={key}>
@@ -83,7 +85,7 @@ function AssignError() {
                     </Field>
                     <label>Creator:</label>
                     <ErrorMessage name='username' component="span" className='error'/>
-                    <Field name='username' className="inputReport" type="email" key={key} placeholder="Creator"  value={value.createdBy}/>
+                    <Field name='username' className="inputReport" type="email" key={key} value={value.createdBy} disabled/>
                     <label>Assign Developer:</label>
                     <ErrorMessage name='developerAssigned' component="span" className='error'/>
                     <Field name='developerAssigned' className="inputReport" as="select" key={key}>

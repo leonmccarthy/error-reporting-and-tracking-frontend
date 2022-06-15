@@ -7,3 +7,31 @@
     /* padding: 10px;
     margin: 10px; */
 }
+
+.RegisterContainer .registerform {
+    width: 60%;
+    padding: 20px;
+    margin: 110px 0;
+    border: 1px solid gray;
+}
+
+.RegisterContainer label, Button, .textfield{
+    width: 100%;
+    margin: 6px 0;
+}
+
+
+.RegisterContainer Button{
+    margin-top: 10px;
+}
+
+.RegisterContainer .error{
+    width: 100%;
+    margin: 2px 0;
+    color: tomato;
+}
+.RegisterContainer .header{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}

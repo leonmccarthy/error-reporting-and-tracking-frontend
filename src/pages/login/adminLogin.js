@@ -44,19 +44,21 @@ function AdminLogin() {
 
   return (
     <div className='LoginContainer'>
-      <div>
-      <h1>Admin Login</h1>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={loginAdmin}>
-          <Form className='loginform'>
-            <label>Username:</label>
-            <ErrorMessage name="username" component="span" className="error" />
-            <Field name="username" type="email" id="inputLogin" placeholder="Enter your email" />
-            <label>Password:</label>
-            <ErrorMessage name="password" component="span" className="error" />
-            <Field name="password" type="password" id="inputLogin" placeholder="Enter your password" />
-            <Button type="submit" variant="primary">Login</Button>
-          </Form>
-      </Formik>
+      <div className='LoginForm'>
+            <div className="header">
+                <h1>Admin Login</h1>
+            </div>
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={loginAdmin}>
+                <Form className='loginform'>
+                  <label>Username:</label>
+                  <ErrorMessage name="username" component="span" className="error" />
+                  <Field name="username" type="email" className="textfield" placeholder="Enter your email" />
+                  <label>Password:</label>
+                  <ErrorMessage name="password" component="span" className="error" />
+                  <Field name="password" type="password" className="textfield" placeholder="Enter your password" />
+                  <Button type="submit" variant="primary">Login</Button>
+                </Form>
+            </Formik>
       </div>
   </div>
     // <div className="adminLogin">

@@ -36,25 +36,27 @@ function UserRegister() {
   }
   return (
     <div className='RegisterContainer'>
-      <div>
-      <h1>User Registration</h1>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={userRegister}>
-          <Form className='registerform'>
-            <label>First name:</label>
-            <ErrorMessage name="firstname" component="span" className="error" />
-            <Field name="firstname" type="text" id="inputRegister" placeholder="Enter your first name" />
-            <label>Last name:</label>
-            <ErrorMessage name="lastname" component="span" className="error" />
-            <Field name="lastname" type="text" id="inputRegister" placeholder="Enter your last name" />
-            <label>Username:</label>
-            <ErrorMessage name="username" component="span" className="error" />
-            <Field name="username" type="email" id="inputRegister" placeholder="Enter your email" />
-            <label>Password:</label>
-            <ErrorMessage name="password" component="span" className="error" />
-            <Field name="password" type="password" id="inputRegister" placeholder="Enter your password" />
-            <Button type="submit" variant="primary">Register</Button>
-          </Form>
-      </Formik>
+      <div className='registerform'>
+            <div className="header">
+                <h1>User Registration</h1>
+            </div>
+            <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={userRegister}>
+                <Form>
+                  <label>First name:</label>
+                  <ErrorMessage name="firstname" component="span" className="error" />
+                  <Field name="firstname" type="text" className="textfield" placeholder="Enter your first name" />
+                  <label>Last name:</label>
+                  <ErrorMessage name="lastname" component="span" className="error" />
+                  <Field name="lastname" type="text" className="textfield" placeholder="Enter your last name" />
+                  <label>Username:</label>
+                  <ErrorMessage name="username" component="span" className="error" />
+                  <Field name="username" type="email" className="textfield" placeholder="Enter your email" />
+                  <label>Password:</label>
+                  <ErrorMessage name="password" component="span" className="error" />
+                  <Field name="password" type="password" className="textfield" placeholder="Enter your password" />
+                  <Button type="submit" variant="primary">Register</Button>
+                </Form>
+            </Formik>
       </div>
     
   </div>

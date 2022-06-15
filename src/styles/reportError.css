@@ -1,9 +1,36 @@
-.reportErrorContainer {
+.reportErrorContainer, .assignErrorContainer {
     grid-column: 2;
     display: grid;
     width: 100%;
     height: 100vh;
     place-items: center;
-    /* padding: 10px;
-    margin: 10px; */
+}
+
+
+.reportErrorContainer .reportForm, .assignErrorContainer .assignForm {
+    width: 60%;
+    padding: 20px;
+    margin-top: 0;
+    border: 1px solid gray;
+}
+
+.reportErrorContainer label, Button, .inputReport, .assignErrorContainer label, Button, .inputReport{
+    width: 100%;
+    margin: 6px 0;
+}
+
+
+.reportErrorContainer Button, .assignErrorContainer Button{
+    margin-top: 10px;
+}
+
+.reportErrorContainer .error, .assignErrorContainer .error{
+    width: 100%;
+    margin: 2px 0;
+    color: tomato;
+}
+.reportErrorContainer .header,.assignErrorContainer .header{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }

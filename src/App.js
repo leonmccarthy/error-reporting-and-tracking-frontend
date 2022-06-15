@@ -76,7 +76,7 @@ function App() {
     <div className="App">
       <AuthContext.Provider value={{authState, setAuthState}}>
       <Router>
-            <NavBar />
+            {authState.status === false &&<NavBar />}
             {authState.status === true &&<Sidebar />}
             
             {/* <Link to={"/a_login"}>Admin Login</Link>
